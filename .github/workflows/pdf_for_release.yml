@@ -14,9 +14,9 @@ jobs:
       - name: Get repo and tag names
         id: vars
         env:
-          REPO_NAME: $(basename $GITHUB_REPOSITORY)
           TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
+          REPO_NAME=$(basename "$GITHUB_REPOSITORY")
           output_name="${REPO_NAME}_version_${TAG_NAME}.pdf"
           echo "output_name=$output_name" >> $GITHUB_OUTPUT
 
