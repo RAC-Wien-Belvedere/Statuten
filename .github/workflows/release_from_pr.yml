@@ -1,0 +1,27 @@
+name: Create Release from PR
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  create-release:
+    if: |
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.labels.*.name, 'release')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out PR
+        uses: actions/checkout@v4
+
+      - name: Set tag name
+        id: tag
+        run: echo "date_tag=$(date +%F)" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag.outputs.date_tag }}
+          name: Version ${{ steps.tag.outputs.date_tag }}
+          generateReleaseNotes: true

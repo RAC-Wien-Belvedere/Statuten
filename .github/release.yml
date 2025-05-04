@@ -1,0 +1,11 @@
+changelog:
+  exclude:
+    labels:
+      - "no release notes"
+  categories:
+    - title: Inhaltliche Änderungen
+      labels:
+        - content
+    - title: Sonstige Änderungen
+      labels:
+        - "*"
