@@ -48,7 +48,9 @@ jobs:
       run: |
         echo "📝 **Latexdiff output**" > diff-comment.md
         echo "" >> diff-comment.md
-        echo "Download the PDF showing changes: [workflow run](https://github.com/${REPO}/actions/runs/${RUN_ID}) (scroll down to _Artifacts_)" >> diff-comment.md
+        echo "Diff-PDF mit markierten Änderungen: [workflow run](https://github.com/${REPO}/actions/runs/${RUN_ID}) (unter _Artifacts_)" >> diff-comment.md
+        echo "" >> diff-comment.md
+        echo "Hinzugefügter Text ist blau unterwellt dargestellt, entfernter Text rot durchgestrichen." >> diff-comment.md
 
     - name: Comment PDF on PR
       uses: marocchino/sticky-pull-request-comment@v2
