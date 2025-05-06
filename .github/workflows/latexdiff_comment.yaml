@@ -28,6 +28,7 @@ jobs:
           git clone https://gitlab.com/git-latexdiff/git-latexdiff.git
           cd /opt/git-latexdiff
           make install
+          cd ../../
           git-latexdiff --verbose --main main.tex --no-view -o diff.pdf --cleanup all --ignore-makefile \
             ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
 
