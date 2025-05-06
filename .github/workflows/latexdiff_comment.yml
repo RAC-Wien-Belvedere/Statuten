@@ -29,9 +29,10 @@ jobs:
           cd /opt/git-latexdiff
           make install
           cd $GITHUB_WORKSPACE
-          git config --global --add safe.directory /home/runner/work/Statuten/Statuten
-          git config --global --add safe.directory /home/runner/work/Statuten/Statuten/.git
-          git-latexdiff --verbose --main main.tex --no-view -o diff.pdf --cleanup all --ignore-makefile \
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          git config --global --add safe.directory $GITHUB_WORKSPACE.git
+          git-latexdiff --verbose --main main.tex --no-view -o diff.pdf \
+            --cleanup all --ignore-makefile -s ONLYCHANGEDPAGE \
             ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
 
     - name: Upload PDF as artifact
@@ -39,12 +40,6 @@ jobs:
       with:
         name: latexdiff-pdf
         path: diff.pdf
-
-    - name: Comment PDF on PR
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        path: diff-comment.md
-        recreate: true
 
     - name: Prepare PR comment markdown
       env:
@@ -54,3 +49,9 @@ jobs:
         echo "📝 **Latexdiff output**" > diff-comment.md
         echo "" >> diff-comment.md
         echo "Download the PDF showing changes: [diff.pdf](https://github.com/${REPO}/actions/runs/${RUN_ID})" >> diff-comment.md
+
+    - name: Comment PDF on PR
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        path: diff-comment.md
+        recreate: true
