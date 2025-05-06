@@ -18,7 +18,7 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Run git-latexdiff
+    - name: Setup and Run git-latexdiff
       uses: xu-cheng/texlive-action@v2
       with:
         scheme: full
@@ -29,6 +29,7 @@ jobs:
           cd /opt/git-latexdiff
           make install
           cd $GITHUB_WORKSPACE
+          git config --global --add safe.directory $GITHUB_WORKSPACE
           git-latexdiff --verbose --main main.tex --no-view -o diff.pdf --cleanup all --ignore-makefile \
             ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
 
