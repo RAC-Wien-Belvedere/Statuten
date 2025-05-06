@@ -32,7 +32,7 @@ jobs:
           git config --global --add safe.directory $GITHUB_WORKSPACE
           git config --global --add safe.directory $GITHUB_WORKSPACE/.git
           git-latexdiff --verbose --main main.tex --no-view -o diff.pdf \
-            --cleanup all --ignore-makefile -s ONLYCHANGEDPAGE --graphics-markup none \
+            --cleanup all --ignore-makefile -s ONLYCHANGEDPAGE --graphics-markup=none \
             ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
 
     - name: Upload PDF as artifact
