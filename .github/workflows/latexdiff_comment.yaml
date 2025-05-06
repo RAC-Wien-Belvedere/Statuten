@@ -7,37 +7,29 @@ on:
 jobs:
   latexdiff:
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'content')
     permissions:
       pull-requests: write
       contents: read
 
     steps:
-    - name: Checkout PR HEAD (new changes)
+    - name: Checkout PR base and full history
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.pull_request.head.ref }}
-        path: pr
+        fetch-depth: 0
 
-    - name: Checkout PR base (original)
-      uses: actions/checkout@v4
+    - name: Run git-latexdiff
+      uses: xu-cheng/texlive-action@v2
       with:
-        ref: ${{ github.event.pull_request.base.ref }}
-        path: base
-
-    - name: Install LaTeX and latexdiff
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y latexdiff texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
-
-    - name: Run latexdiff
-      run: |
-        latexdiff base/main.tex pr/main.tex > diff.tex
-
-    - name: Compile diff.tex
-      run: |
-        pdflatex -interaction=nonstopmode diff.tex
-        pdflatex -interaction=nonstopmode diff.tex
-      # Double compile handles cross-references
+        scheme: full
+        run: |
+          apk add git g++ make asciidoc
+          cd /opt
+          git clone https://gitlab.com/git-latexdiff/git-latexdiff.git
+          cd /opt/git-latexdiff
+          make install
+          git-latexdiff --verbose --main main.tex --no-view -o diff.pdf --cleanup all --ignore-makefile \
+            ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }}
 
     - name: Upload PDF as artifact
       uses: actions/upload-artifact@v4
@@ -59,23 +51,3 @@ jobs:
         echo "📝 **Latexdiff output**" > diff-comment.md
         echo "" >> diff-comment.md
         echo "Download the PDF showing changes: [diff.pdf](https://github.com/${REPO}/actions/runs/${RUN_ID})" >> diff-comment.md
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
