@@ -23,6 +23,11 @@ jobs:
           output_name="${REPO_NAME}_version_${TAG_NAME}.pdf"
           echo "output_name=$output_name" >> $GITHUB_OUTPUT
 
+      - name: Replace date in source
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: sed -i -E "s|(\\\\DTMsavedate\{release\}\{)[^}]+(\})|\1$TAG_NAME\2|" "main.tex"
+
       - name: Compile PDF
         uses: xu-cheng/latex-action@v3
         with:
