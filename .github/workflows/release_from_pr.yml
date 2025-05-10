@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  create-tag
+  create-tag:
     if: |
       github.event.pull_request.merged == true &&
       contains(github.event.pull_request.labels.*.name, 'release')
