@@ -19,7 +19,13 @@ jobs:
     steps:
       - name: Set tag name
         id: tag
-        run: echo "date_tag=$(date +%F)" >> $GITHUB_OUTPUT
+        run: echo "date_tag=$(TZ=Europe/Vienna date +%F)" >> $GITHUB_OUTPUT
+
+      - name: Add to step summary
+        if: ${{ success() }}
+        env:
+          TAG_NAME: ${{ steps.tag.outputs.date_tag }}
+        run: echo "## Tag is $TAG_NAME" >> $GITHUB_STEP_SUMMARY
 
   build:
     needs: create-tag
@@ -46,3 +52,9 @@ jobs:
           name: Version ${{ needs.create-tag.outputs.tag_name }}
           artifacts: ${{ needs.build.outputs.pdfname }}
           generateReleaseNotes: true
+
+      - name: Add to step summary
+        if: ${{ success() }}
+        env:
+          TAG_NAME: ${{ needs.create-tag.outputs.tag_name }}
+        run: echo "## Successfully created release $TAG_NAME" >> $GITHUB_STEP_SUMMARY

@@ -34,4 +34,5 @@ jobs:
         if: ${{ success() }}
         env:
           PDF_NAME: ${{ needs.build.outputs.pdfname }}
-        run: echo "## Successfully built $PDF_NAME" >> $GITHUB_STEP_SUMMARY
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: echo "## Successfully uploaded $PDF_NAME to $TAG_NAME release" >> $GITHUB_STEP_SUMMARY
