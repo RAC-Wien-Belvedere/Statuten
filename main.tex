@@ -5,12 +5,21 @@
 \pagestyle{fancy}
 \usepackage{xcolor}
 \usepackage[naustrian]{babel}
+\usepackage[useregional]{datetime2}
 
-\rhead{\includegraphics[height=1cm]{Logo.pdf}}
+% Placeholder for date, replaced by release workflow
+\DTMsavedate{release}{0000-00-00}
+
+\fancyhf{}
+\fancyhead[L]{Statuten}
+\fancyhead[R]{\includegraphics[height=1cm]{Logo.pdf}}
+\fancyfoot[L]{{\footnotesize\color{gray} PDF erstellt am \today}}
+\fancyfoot[R]{\thepage}
+\makeatother
 
 \title{Statuten}
 \author{des Rotaract Clubs Wien-Belvedere}
-\date{beschlossen von der Vollversammlung am 8. Mai 2023}
+\date{beschlossen von der Vollversammlung am \DTMusedate{release}.}
 
 \begin{document}
 \begin{figure}[t]
