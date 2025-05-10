@@ -36,10 +36,16 @@ jobs:
       - name: Check out PR
         uses: actions/checkout@v4
 
+      - name: Retrieve PDF
+        uses: actions/download-artifact@v4
+        with:
+          name: releasepdf
+          path: ./artifacts
+
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ needs.create-tag.outputs.tag_name }}
           name: Version ${{ needs.create-tag.outputs.tag_name }}
-          artifacts: ${{ needs.build.outputs.pdfname }}
+          artifacts: artifacts/${{ needs.build.outputs.pdfname }}
           generateReleaseNotes: true

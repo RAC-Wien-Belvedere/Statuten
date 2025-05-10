@@ -26,18 +26,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: releasepdf
-          path: ${{ needs.build.outputs.pdfname }}
-
-      - name: Debug File Path 1
-        run: ls -la /home/runner/work/Statuten/Statuten/
-
-      - name: Debug File Path 2
-        run: tree -d
+          path: ./artifacts
 
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ needs.build.outputs.pdfname }}
+          files: artifacts/${{ needs.build.outputs.pdfname }}
           fail_on_unmatched_files: true
 
       - name: Add to step summary
