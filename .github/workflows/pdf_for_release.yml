@@ -19,6 +19,9 @@ jobs:
     needs: build
     if: ${{ needs.build.result == 'success' }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Retrieve PDF
         uses: actions/download-artifact@v4
         with:
@@ -29,6 +32,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ${{ needs.build.outputs.pdfname }}
+          fail_on_unmatched_files: true
 
       - name: Add to step summary
         if: ${{ success() }}
