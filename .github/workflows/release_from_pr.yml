@@ -9,22 +9,38 @@ permissions:
   contents: write
 
 jobs:
-  create-release:
+  create-tag
     if: |
       github.event.pull_request.merged == true &&
       contains(github.event.pull_request.labels.*.name, 'release')
-    runs-on: ubuntu-latest
+    outputs:
+      tag_name: ${{ steps.tag.outputs.date_tag }}
     steps:
-      - name: Check out PR
-        uses: actions/checkout@v4
-
       - name: Set tag name
         id: tag
         run: echo "date_tag=$(date +%F)" >> $GITHUB_OUTPUT
 
+  build:
+    runs-on: ubuntu-latest
+    needs: create-tag
+    if: ${{ needs.create-tag.result == 'success' }}
+    uses: ./.github/workflows/build_pdf.yml
+    secrets: inherit
+    with:
+      tag: ${{ needs.create-tag.outputs.tag_name }}
+
+  create-release:
+    runs-on: ubuntu-latest
+    needs: [create-tag, build]
+    if: ${{ needs.build.result == 'success' }}
+    steps:
+      - name: Check out PR
+        uses: actions/checkout@v4
+
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ steps.tag.outputs.date_tag }}
-          name: Version ${{ steps.tag.outputs.date_tag }}
+          tag: ${{ needs.create-tag.outputs.tag_name }}
+          name: Version ${{ needs.create-tag.outputs.tag_name }}
+          artifacts: ${{ needs.build.outputs.pdfname }}
           generateReleaseNotes: true

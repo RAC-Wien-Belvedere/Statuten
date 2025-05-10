@@ -10,39 +10,29 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    uses: ./.github/workflows/build_pdf.yml
+    secrets: inherit
+    with:
+      tag: ${{ github.event.release.tag_name }}
+
+  upload:
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ needs.build.result == 'success' }}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Get repo and tag names
-        id: vars
-        env:
-          TAG_NAME: ${{ github.event.release.tag_name }}
-        run: |
-          REPO_NAME=$(basename "$GITHUB_REPOSITORY")
-          output_name="${REPO_NAME}_version_${TAG_NAME}.pdf"
-          echo "output_name=$output_name" >> $GITHUB_OUTPUT
-
-      - name: Replace date in source
-        env:
-          TAG_NAME: ${{ github.event.release.tag_name }}
-        run: sed -i -E "s|(\\\\DTMsavedate\{release\}\{)[^}]+(\})|\1$TAG_NAME\2|" "main.tex"
-
-      - name: Compile PDF
-        uses: xu-cheng/latex-action@v3
+      - name: Retrieve PDF
+        uses: actions/download-artifact@v4
         with:
-          root_file: main.tex
-
-      - name: Rename PDF
-        run: mv main.pdf ${{ steps.vars.outputs.output_name }}
+          name: releasepdf
+          path: ${{ needs.build.outputs.pdfname }}
 
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ steps.vars.outputs.output_name }}
+          files: ${{ needs.build.outputs.pdfname }}
 
       - name: Add to step summary
         if: ${{ success() }}
         env:
-          PDF_NAME: ${{ steps.vars.outputs.output_name }}
+          PDF_NAME: ${{ needs.build.outputs.pdfname }}
         run: echo "## Successfully built $PDF_NAME" >> $GITHUB_STEP_SUMMARY
