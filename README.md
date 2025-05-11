@@ -3,8 +3,10 @@
 ## Änderungen
 
 Jede Änderung muss durch Pull Request erfolgen.
-Für jeden Pull Request wird automatisch ein LaTeX-Diff-PDF generiert und in einem Kommentar verlinkt, das für jede weitere Änderung erneuert wird.
 Inhaltliche Änderungen (also nicht etwa Format- oder Layout-bezogene Änderungen) sollten mit dem Label `content` versehen werden.
+Für jeden Pull Request mit dem Label `content` wird automatisch ein LaTeX-Diff-PDF generiert und in einem Kommentar verlinkt, das für jede weitere Änderung erneuert wird.
+In diesem PDF, welches nur Seiten mit Änderungen anzeigt, ist neu hinzugefügter Text als blau unterwellt dargestellt und entfernter Text als rot durchgestrichen.
+
 Wenn ein Pull Request mit dem Label `release` versehen ist, dann wird durch den Merge automatisch eine neue Version generiert.
 Dies ist sinnvoll, wenn eine einzelne Änderung vorgenommen werden soll.
 Bei mehreren, voneinander unabhängigen Änderungen können mehrere Pull Requests erstellt werden, um über die Änderungen gesondert abstimmen zu können.
