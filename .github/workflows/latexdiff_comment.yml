@@ -20,6 +20,7 @@ jobs:
 
     - name: Setup and Run git-latexdiff
       uses: xu-cheng/texlive-action@v2
+      continue-on-error: true  # Diff might be empty
       with:
         scheme: full
         run: |
