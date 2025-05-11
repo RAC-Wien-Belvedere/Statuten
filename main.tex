@@ -1,33 +1,11 @@
-\documentclass{article}
-\usepackage[margin=2.5cm,headheight=36pt,includeheadfoot]{geometry}
-\usepackage{graphicx}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\usepackage{xcolor}
-\usepackage[naustrian]{babel}
-\usepackage[useregional]{datetime2}
-
-% Placeholder for date, replaced by release workflow
-\DTMsavedate{release}{0000-00-00}
-
-\fancyhf{}
-\fancyhead[L]{RAC Wien-Belvedere -- Statuten}
-\fancyhead[R]{\includegraphics[height=1cm]{Logo.pdf}}
-\fancyfoot[L]{{\footnotesize\color{gray} PDF erstellt am \today}}
-\fancyfoot[R]{\thepage}
-\makeatother
+\documentclass{statutclass}
 
 \title{Statuten}
-\author{des Rotaract Clubs Wien-Belvedere}
-\date{beschlossen von der Vollversammlung am \DTMusedate{release}.}
+\author{Wien-Belvedere}
+\date{0000-00-00}  % Placeholder for date, replaced by release workflow
 
 \begin{document}
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\linewidth]{Logo.pdf}
-\end{figure}
 \maketitle
-\clearpage
 \tableofcontents
 \clearpage
 
@@ -61,7 +39,7 @@
 
 \section{Finanzielle Mittel}
 Die finanziellen Mittel des Vereins werden aufgebracht durch:
-\begin{enumerate}  % abc!
+\begin{enumerate}[label=\alph*)]
     \item Mitgliedsbeiträge
     \item Spenden
     \item Einnahmen aus Veranstaltungen des Clubs
@@ -95,13 +73,13 @@ Die finanziellen Mittel des Vereins werden aufgebracht durch:
     \item Werden fristgerecht ein oder mehrere begründete Einsprüche an den Vorstand gerichtet und können diese durch eine Aussprache zwischen den Mitgliedern, welche Einspruch erhoben haben, dem Vorstand und dem Paten nicht beseitigt werden, wird die Aufnahme des Kandidaten
     \begin{enumerate}
         \item sofort abgelehnt, wenn von einem Drittel oder mehr der ordentlichen Mitglieder fristgerecht Einspruch erhoben wurde;
-        \item sofort abgelehnt, wenn zwei Drittel des Vorstandes fristgerecht Einspruch erhoben haben.
+        \item\label{abgelehnt} sofort abgelehnt, wenn zwei Drittel des Vorstandes fristgerecht Einspruch erhoben haben.
         \item auf eine vom Vorstand aus diesem Grund einzuberufende Vollversammlung vertagt, wenn weniger als ein Drittel aller ordentlichen Mitglieder fristgerecht Einspruch erhoben haben. In dieser Vollversammlung hat eine Diskussion über die Einsprüche gegen die Aufnahme des Kandidaten zu erfolgen. Daran hat sich eine geheime Abstimmung anzuschließen. Werden drei oder mehr Gegenstimmen abgegeben, ist die Aufnahme des Kandidaten abgelehnt.
     \end{enumerate}
-    \item Der Kandidat gilt als aufgenommen, wenn keine Einsprüche fristgerecht an den Vorstand gerichtet wurden oder wenn der Antrag auf Aufnahme des Kandidaten nach Artikel VI Absatz 5 lit b die erforderliche Mehrheit in der Vollversammlung erhalten hat.
+    \item Der Kandidat gilt als aufgenommen, wenn keine Einsprüche fristgerecht an den Vorstand gerichtet wurden oder wenn der Antrag auf Aufnahme des Kandidaten nach \ref{abgelehnt} die erforderliche Mehrheit in der Vollversammlung erhalten hat.
 \end{enumerate}
 
-\section{Rechte und Pflichten der Mitglieder}
+\section{Rechte und Pflichten der Mitglieder}\label{rechteundpflichten}
 \begin{enumerate}
     \item Alle Mitglieder haben das Recht, an sämtlichen Veranstaltungen des Rotaract Clubs teilzunehmen sowie die Rotaract Clubnadel zu führen. Das Recht zur Teilnahme an der Vollversammlung steht nur den ordentlichen und den beurlaubten Mitgliedern zu.
     \item Alle ordentlichen sowie die beurlaubten Mitglieder haben das Recht, Einsicht in die Finanzunterlagen und in die Protokolle der Clubzusammenkünfte und Vorstandssitzungen zu nehmen.
@@ -130,9 +108,9 @@ Die finanziellen Mittel des Vereins werden aufgebracht durch:
 \section{Beendigung der Mitgliedschaft}
 \begin{enumerate}
     \item Die ordentliche Mitgliedschaft endet durch freiwilligen Austritt, durch Ausschluss aus dem Club, durch Streichung aus dem Mitgliederverzeichnis oder durch Überführung in eine unterstützende Mitgliedschaft.
-    \item Der Ausschluss eines ordentlichen oder außerordentlichen Mitgliedes kann lediglich aufgrund der Nichtbeachtung dieser Satzung, insbesondere der Nichterfüllung der in Artikel VII aufgezählten Pflichten, erfolgen. Liegt nach Ansicht eines Mitgliedes ein Ausschlusstatbestand vor, so hat dieses Mitglied einen Antrag auf Ausschluss an die Vollversammlung zu stellen. Das betreffende Mitglied gilt als ausgeschlossen, wenn bei einer Vollversammlung zwei Drittel der stimmberechtigten Mitglieder dem Ausschlussantrag zustimmen. Die Beschlussfähigkeit dieser Vollversammlung ist in Artikel XIII Absatz 4 und 5 festgelegt. 
+    \item\label{ausschluss} Der Ausschluss eines ordentlichen oder außerordentlichen Mitgliedes kann lediglich aufgrund der Nichtbeachtung dieser Satzung, insbesondere der Nichterfüllung der in \ref{rechteundpflichten} aufgezählten Pflichten, erfolgen. Liegt nach Ansicht eines Mitgliedes ein Ausschlusstatbestand vor, so hat dieses Mitglied einen Antrag auf Ausschluss an die Vollversammlung zu stellen. Das betreffende Mitglied gilt als ausgeschlossen, wenn bei einer Vollversammlung zwei Drittel der stimmberechtigten Mitglieder dem Ausschlussantrag zustimmen. Die Beschlussfähigkeit dieser Vollversammlung ist in \ref{mehrheiten} und \ref{vertagung} festgelegt. 
     \item Der Vorstand kann bei besonders schweren Pflichtverstößen den Ausschluss eines Mitgliedes in rotarischen Medien veröffentlichen. 
-    \item Die Streichung eines Mitglieds aus dem Mitgliederverzeichnis durch den Vorstand erfolgt, wenn das Mitglied über einen Zeitraum von mindestens einem Jahr weder den festgesetzten Mitgliedsbeitrag pünktlich entrichtet, noch an Zusammenkünften oder Veranstaltungen des Rotaract Clubs Wien-Belvedere teilgenommen hat und auch keine Beurlaubung oder sonstige Entschuldigung vorliegt. Der Vorstand hat, sofern eine Möglichkeit zur Kontaktaufnahme besteht, dem betreffenden Mitglied die Streichung aus dem Mitgliederverzeichnis wenigstens einen Monat vorher anzukündigen und Gelegenheit zur Stellungnahme zu geben. Auf Antrag des betreffenden Mitglieds ist die Streichung aus dem Mitgliederverzeichnis vorläufig nicht durchzuführen und der nächsten Vollversammlung gemäß Artikel IX Absatz 2 zur endgültigen Entscheidung vorzulegen.
+    \item Die Streichung eines Mitglieds aus dem Mitgliederverzeichnis durch den Vorstand erfolgt, wenn das Mitglied über einen Zeitraum von mindestens einem Jahr weder den festgesetzten Mitgliedsbeitrag pünktlich entrichtet, noch an Zusammenkünften oder Veranstaltungen des Rotaract Clubs Wien-Belvedere teilgenommen hat und auch keine Beurlaubung oder sonstige Entschuldigung vorliegt. Der Vorstand hat, sofern eine Möglichkeit zur Kontaktaufnahme besteht, dem betreffenden Mitglied die Streichung aus dem Mitgliederverzeichnis wenigstens einen Monat vorher anzukündigen und Gelegenheit zur Stellungnahme zu geben. Auf Antrag des betreffenden Mitglieds ist die Streichung aus dem Mitgliederverzeichnis vorläufig nicht durchzuführen und der nächsten Vollversammlung gemäß \ref{ausschluss} zur endgültigen Entscheidung vorzulegen.
 \end{enumerate}
 
 \section{Clubjahr}
@@ -154,21 +132,21 @@ Organe des Clubs sind die Vollversammlung, der Vorstand, zwei Rechnungsprüfer u
     \item In die Zuständigkeit der Vollversammlung fallen alle ihr in dieser Satzung ausdrücklich zugewiesenen Angelegenheiten, insbesondere:
     \begin{enumerate}
         \item die Wahl und Enthebung des Vorstandes und die Bestellung der Rechnungsprüfer;
-        \item die Entscheidung über Aufnahme von ordentlichen Mitgliedern nach Artikel VI Absatz 5 lit b und über den Ausschluss von Mitgliedern;
+        \item die Entscheidung über Aufnahme von ordentlichen Mitgliedern nach \ref{abgelehnt} und über den Ausschluss von Mitgliedern;
         \item Änderungen und Ergänzungen der Statuten;
         \item die Auflösung des Clubs;
         \item die Entgegennahme und Genehmigung des Jahresberichts des Vorstands und der Jahresabrechnung sowie die Entlastung des Vorstands;
         \item die Festsetzung des Mitgliedsbeitrages für ordentliche und beurlaubte Mitglieder;
         \item die Verleihung und Aberkennung der Ehrenmitgliedschaft.
     \end{enumerate}
-    \item Die Entscheidungen der Vollversammlung haben, soweit in diesen Statuten nichts anderes bestimmt ist, mit einfacher Mehrheit der anwesenden stimmberechtigten Mitglieder zu erfolgen. Die Vollversammlung ist bei Anwesenheit von mindestens der Hälfte der ordentlichen Mitglieder voll beschlussfähig. Ist die Vollversammlung zur festgesetzten Zeit nicht beschlussfähig, so findet sie 15 Minuten später mit derselben Tagesordnung statt. In diesem Fall ist die Beschlussfähigkeit ohne Rücksicht auf die Zahl der erschienenen Mitglieder gegeben, doch darf über folgende Anträge nicht abgestimmt werden:
+    \item\label{mehrheiten} Die Entscheidungen der Vollversammlung haben, soweit in diesen Statuten nichts anderes bestimmt ist, mit einfacher Mehrheit der anwesenden stimmberechtigten Mitglieder zu erfolgen. Die Vollversammlung ist bei Anwesenheit von mindestens der Hälfte der ordentlichen Mitglieder voll beschlussfähig. Ist die Vollversammlung zur festgesetzten Zeit nicht beschlussfähig, so findet sie 15 Minuten später mit derselben Tagesordnung statt. In diesem Fall ist die Beschlussfähigkeit ohne Rücksicht auf die Zahl der erschienenen Mitglieder gegeben, doch darf über folgende Anträge nicht abgestimmt werden:
     \begin{enumerate}
-        \item Ausschluss von Mitgliedern gemäß Artikel IX Absatz 2;
-        \item Statutenänderungen gemäß Artikel XIX;
-        \item Auflösung des Clubs gemäß Artikel XX. 
+        \item Ausschluss von Mitgliedern gemäß \ref{ausschluss};
+        \item Statutenänderungen gemäß \ref{statutenaenderung};
+        \item Auflösung des Clubs gemäß \ref{aufloesung}.
     \end{enumerate}
     Solche Anträge müssen aber in jedem Falle verlesen und bei der nächsten Vollversammlung neuerlich vorgelegt werden.
-    \item Kann der Ausschluss von Mitgliedern, eine Statutenänderung oder die Auflösung des Clubs bei der ersten hierfür anberaumten Vollversammlung mangels Beschlussfähigkeit nicht beschlossen werden, so kann dafür mindestens 14 Tage später eine neuerliche Vollversammlung angesetzt werden. Diese ist zum Ausschluss von Mitgliedern, zu Statutenänderungen und zur Auflösung des Clubs auch dann beschlussfähig, wenn nach einer Vertagung um 15 Minuten nicht mindestens die Hälfte der ordentlichen Mitglieder anwesend sind. 
+    \item\label{vertagung} Kann der Ausschluss von Mitgliedern, eine Statutenänderung oder die Auflösung des Clubs bei der ersten hierfür anberaumten Vollversammlung mangels Beschlussfähigkeit nicht beschlossen werden, so kann dafür mindestens 14 Tage später eine neuerliche Vollversammlung angesetzt werden. Diese ist zum Ausschluss von Mitgliedern, zu Statutenänderungen und zur Auflösung des Clubs auch dann beschlussfähig, wenn nach einer Vertagung um 15 Minuten nicht mindestens die Hälfte der ordentlichen Mitglieder anwesend sind. 
 \end{enumerate}
 
 \section{Der Vorstand}
@@ -202,10 +180,10 @@ Organe des Clubs sind die Vollversammlung, der Vorstand, zwei Rechnungsprüfer u
 \end{enumerate}
 
 \section{Bestellung des Vorstands und der Rechnungsprüfer}
-\begin{enumerate}
+\begin{enumerate}[ref=Absatz \arabic*]
     \item Die Bestellung des Vorstandes (mit Ausnahme des Präsidenten und des Pastpäsidenten) sowie der beiden Rechnungsprüfer für das folgende Clubjahr erfolgt in einer Vollversammlung des laufenden Clubjahres in geheimer, persönlicher und direkter Wahl bis spätestens 30. Juni des laufenden Clubjahres. Auch die Wahl des Präsidenten Elect für das jeweils kommende Clubjahr erfolgt bis spätestens 30. Juni. Falls die Vollversammlung dies einstimmig beschließt, können der Vorstand und die Rechnungsprüfer auch offen gewählt werden.
-    \item In das Amt des Präsidenten des folgenden Clubjahres rückt der Vizepräsident des laufenden Clubjahres automatisch nach. Der Präsident des laufenden Clubjahres bleibt als Pastpräsident Vorstandsmitglied während des folgenden Clubjahres. Während der Amtsdauer ausscheidende Mitglieder des Vorstands werden mittels Nachwahl von der Vollversammlung ersetzt.
-    \item Der Präsident ist nur dann zu wählen, wenn die Automatik des Absatz 2 -- aus welchen Gründen auch immer -- nicht anwendbar ist. Wenn der Clubpräsidenten während seiner Amtszeit das 34. Lebensjahr erreicht, darf er ein weiteres Jahr als Pastpräsident zur Verfügung stehen, um eine kontinuierliche Amtsführung zu gewährleisten.
+    \item\label{incomingpres} In das Amt des Präsidenten des folgenden Clubjahres rückt der Vizepräsident des laufenden Clubjahres automatisch nach. Der Präsident des laufenden Clubjahres bleibt als Pastpräsident Vorstandsmitglied während des folgenden Clubjahres. Während der Amtsdauer ausscheidende Mitglieder des Vorstands werden mittels Nachwahl von der Vollversammlung ersetzt.
+    \item Der Präsident ist nur dann zu wählen, wenn die Automatik des \ref{incomingpres} -- aus welchen Gründen auch immer -- nicht anwendbar ist. Wenn der Clubpräsidenten während seiner Amtszeit das 34. Lebensjahr erreicht, darf er ein weiteres Jahr als Pastpräsident zur Verfügung stehen, um eine kontinuierliche Amtsführung zu gewährleisten.
     \item Jedes ordentliche Mitglied sowie jedes beurlaubte Mitglied, dessen Beurlaubung zum Zeitpunkt des Amtsantritts beendet sein wird, kann zum Mitglied des Vorstandes und zum Rechnungsprüfer gewählt werden. Die Rechnungsprüfer dürfen keinem Organ mit Ausnahme der Vollversammlung angehören, dessen Tätigkeit Gegenstand der Prüfung ist. Sofern der Club nicht weniger als 15 ordentliche Mitglieder hat, darf außer dem Pastpräsidenten kein Mitglied des Vorstands mehr als eine Funktion gleichzeitig ausüben.
     \item Jedes Mitglied, darf abgesehen von der Funktionsdauer als Präsident, Vizepräsident und Pastpräsident höchstens drei Jahre in Folge Mitglied des Vorstands sein. Präsident darf jedes Mitglied nur höchstens ein Jahr sein. Diese Einschränkungen gelten jedoch nicht, wenn der Club weniger als 25 ordentliche Mitglieder hat.
     \item Wahlvorschläge für die Mitglieder des Vorstands und die Rechnungsprüfer können in Absprache mit den vorgeschlagenen Kandidaten von jedem stimmberechtigten Mitglied bis spätestens eine Woche vor der Wahl an den Vorstand eingereicht werden. Der Präsident des folgenden Clubjahres hat Wahlvorschläge für sämtliche Mitglieder des Vorstands und die Rechnungsprüfer einzubringen. Bekommt kein Wahlvorschlag in der Vollversammlung die erforderliche Mehrheit, so können auch weitere Wahlvorschläge direkt in der Vollversammlung eingebracht werden.
@@ -227,15 +205,15 @@ Organe des Clubs sind die Vollversammlung, der Vorstand, zwei Rechnungsprüfer u
     \item Beim Schiedsgericht im Sinne dieser Statuten handelt es sich lediglich um eine Schlichtungseinrichtung im Sinne des Vereinsgesetzes 2002 und nicht um ein Schiedsgericht im Sinne der §§ 577 ff ZPO.
 \end{enumerate}
 
-\section{Änderungen der Statuten}
+\section{Änderungen der Statuten}\label{statutenaenderung}
 \begin{enumerate}
-    \item Eine Änderung dieser Statuten kann nur durch die Vollversammlung mit einfacher Mehrheit der anwesenden stimmberechtigten Mitglieder erfolgen. Die Beschlussfähigkeit dieser Vollversammlung ist in Artikel XIII Absatz 4 und 5 festgelegt.
+    \item Eine Änderung dieser Statuten kann nur durch die Vollversammlung mit einfacher Mehrheit der anwesenden stimmberechtigten Mitglieder erfolgen. Die Beschlussfähigkeit dieser Vollversammlung ist in \ref{mehrheiten} und \ref{vertagung} festgelegt.
     \item Jede Änderung der Statuten durch Beschluss der Vollversammlung ist dem Rotary Patenclub zur Kenntnis zu bringen, der dagegen innerhalb eines Monats Einspruch erheben kann.
 \end{enumerate}
 
-\section{Auflösung des Vereins}
+\section{Auflösung des Vereins}\label{aufloesung}
 \begin{enumerate}
-    \item Die freiwillige Auflösung des Clubs erfolgt durch eine hierfür anzuberaumende Vollversammlung. Die Beschlussfähigkeit dieser Vollversammlung ist in Artikel XIII Absatz 4 und 5 festgelegt. Der Antrag auf Auflösung des Clubs gilt als angenommen, wenn in einer dafür beschlussfähigen Vollversammlung zwei Drittel der stimmberechtigten Mitglieder dem Antrag zustimmen.
+    \item Die freiwillige Auflösung des Clubs erfolgt durch eine hierfür anzuberaumende Vollversammlung. Die Beschlussfähigkeit dieser Vollversammlung ist in \ref{mehrheiten} und \ref{vertagung} festgelegt. Der Antrag auf Auflösung des Clubs gilt als angenommen, wenn in einer dafür beschlussfähigen Vollversammlung zwei Drittel der stimmberechtigten Mitglieder dem Antrag zustimmen.
     \item Der Club ist aufzulösen, wenn Rotary International die Anerkennung als Rotaract Club entzieht. Im Fall der Auflösung des Rotary Patenclubs oder des Entzuges der Patenschaft durch den Patenclub kann ein neuer Rotary Club die Patenschaft übernehmen. Falls sich jedoch innerhalb eines Jahres kein solcher Nachfolger finden lässt, muss der Rotaract Club aufgelöst werden. Die Liquidation findet durch den Vorstand statt.
     \item Das bei der Auflösung vorhandene aktive Clubvermögen fließt einer durch die Vollversammlung zu bestimmenden wohltätigen Organisation zu.
 \end{enumerate}
@@ -243,13 +221,12 @@ Organe des Clubs sind die Vollversammlung, der Vorstand, zwei Rechnungsprüfer u
 \section{Übergangs- und Schlussbestimmungen}
 \begin{enumerate}
     \item Die vorliegenden Statuten ersetzen nach Inkrafttreten die bisherigen Statuten.
-    \item \glqq{}Schriftlich\grqq{} im Sinne dieser Satzung schließt ausdrücklich die Übertragung des Schriftsatzes in jeder üblichen technisch möglichen Form ein, zum Beispiel Email.
+    \item \glqq{}Schriftlich\grqq{} im Sinne dieser Satzung schließt ausdrücklich die Übertragung des Schriftsatzes in jeder technisch möglichen Form ein, insbesondere auf dem Wege der automationsunterstützten Datenübertragung (Email) oder per Telefax.
     \item Soweit personenbezogene Bezeichnungen nur in männlicher Form angeführt sind, beziehen sie sich auf Frauen und Männer in gleicher Weise.
 \end{enumerate}
+
 \end{document}
 
 % https://tex.stackexchange.com/a/122936/318292
 
-% TODO LaTeX: format title, format headers and footers, better enumerate etc., actual refs!
-
-% TODO Änderungen: evtl. Organs as subsections? chk Duplication, chk Altergrenze auch indirekt erwähnt nach Elevation. Mitgliedsbeiträge usw, chk auch Erwähnungen von Festlegen bei GV usw, chk auch unterstützende etc.
+% TODO Änderungen: rm Telefax?, evtl. Organs as subsections? chk Duplication, chk Altergrenze auch indirekt erwähnt nach Elevation. Mitgliedsbeiträge usw, chk auch Erwähnungen von Festlegen bei GV usw, chk auch unterstützende etc.; ref abgelehnt sollte lit c ??
