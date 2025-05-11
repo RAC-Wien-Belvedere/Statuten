@@ -8,6 +8,7 @@ jobs:
   latexdiff:
     runs-on: ubuntu-latest
     if: contains(github.event.pull_request.labels.*.name, 'content')
+    continue-on-error: true  # Diff might be empty
     permissions:
       pull-requests: write
       contents: read
