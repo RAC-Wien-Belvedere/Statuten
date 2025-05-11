@@ -33,7 +33,7 @@ jobs:
       - name: Replace date in source
         env:
           TAG_NAME: ${{ inputs.tag }}
-        run: sed -i -E "s|(\\\\DTMsavedate\{release\}\{)[^}]+(\})|\1$TAG_NAME\2|" "main.tex"
+        run: sed -i -E "s|(\\\\date\{)[^}]+(\})|\1$TAG_NAME\2|" "main.tex"
 
       - name: Compile PDF
         uses: xu-cheng/latex-action@v3
