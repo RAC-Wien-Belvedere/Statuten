@@ -1,0 +1,67 @@
+name: Before-After for Pull Request
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  latexbeforeafter:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'format')
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout PR base (original)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          path: base
+
+      - name: Checkout PR HEAD (new changes)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          path: head
+
+      - name: Compile base (before)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: base
+          output_directory: ../output
+
+      - name: Rename base PDF to before.pdf
+        run: mv output/main.pdf output/before.pdf
+
+      - name: Compile head (after)
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: head
+          output_directory: ../output
+
+      - name: Rename head PDF to after.pdf
+        run: mv output/main.pdf output/after.pdf
+
+      - name: Upload PDFs as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-before-after
+          path: output/*.pdf
+
+      - name: Prepare PR comment markdown
+        env:
+          RUN_ID: ${{ github.run_id }}
+          REPO: ${{ github.repository }}
+        run: |
+          echo "## 📝 Vorher-Nachher Vergleich" > before-after-comment.md
+          echo "" >> before-after-comment.md
+          echo "PDFs für Vorher und Nachher: [workflow run](https://github.com/${REPO}/actions/runs/${RUN_ID}) (unter _Artifacts_)" >> before-after-comment.md
+
+      - name: Comment PDF on PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          path: before-after-comment.md
+          recreate: true
