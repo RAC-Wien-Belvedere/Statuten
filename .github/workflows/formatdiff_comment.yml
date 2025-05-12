@@ -25,25 +25,19 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           path: head
 
-      - name: Compile base (before)
+      - name: Compile base PDFs
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex
-          working_directory: base
-          output_directory: ../output
+          root_file: |
+            base/main.tex
+            head/main.tex
+          work_in_root_file_dir: true
 
-      - name: Rename base PDF to before.pdf
-        run: mv output/main.pdf output/before.pdf
-
-      - name: Compile head (after)
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: main.tex
-          working_directory: head
-          output_directory: ../output
-
-      - name: Rename head PDF to after.pdf
-        run: mv output/main.pdf output/after.pdf
+      - name: Rename PDFs
+        run: |
+          mkdir output
+          mv base/main.pdf output/before.pdf
+          mv head/main.pdf output/after.pdf
 
       - name: Upload PDFs as artifacts
         uses: actions/upload-artifact@v4
