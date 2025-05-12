@@ -69,5 +69,6 @@ jobs:
       - name: Comment PDF on PR
         uses: marocchino/sticky-pull-request-comment@v2
         with:
+          header: latexdiff
           path: diff-comment.md
           recreate: true
